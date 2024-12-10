@@ -1,20 +1,28 @@
 {
     "appName": "eclipse",
+
     "version": "2.1",
+
     "streamLifespan": 1800000,
     "maxVideoDuration": 1920000,
+
     "genericUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
     "repo": "https://github.com/ifyoucanhear/eclipse",
+    
     "supportedLanguages": ["en"],
+
     "authorInfo": {
         "name": "ifyoucanhear",
         "link": "https://github.com/ifyoucanhear"
     },
+
     "internetExplorerRedirect": {
         "newNT": ["6.1", "6.2", "6.3", "10.0"],
+
         "old": "https://mypal-browser.org/",
         "new": "https://vivaldi.com/"
     },
+
     "quality": {
         "hig": "1080",
         "mid": "720",
