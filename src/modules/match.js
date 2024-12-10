@@ -47,9 +47,9 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                 } else throw Error()
 
             case "youtube":
-                if (patternMatch["id"]) {
+                if (patternMatch["id"] && patternMatch["id"].length >= 11) {
                     let fetchInfo = {
-                        id: patternMatch["id"].slice(0, 11),
+                        id: patternMatch["id"].slice(0,11),
                         lang: lang, quality: quality,
                         format: "mp4"
                     };

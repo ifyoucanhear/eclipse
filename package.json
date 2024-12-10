@@ -9,8 +9,8 @@
     "node": ">=14.16"
   },
   "scripts": {
-    "start": "node eclipse",
-    "setup": "node modules/setup.js"
+    "start": "node src/eclipse",
+    "setup": "node src/modules/setup"
   },
   "repository": {
     "type": "git",

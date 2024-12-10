@@ -1,6 +1,6 @@
 import NodeCache from "node-cache";
 
-import { UUID, encrypt } from "../sub/crypto.js";
+import { UUID, encrypt } from "../../src/modules/sub/crypto.js";
 import { streamLifespan } from "../config.js";
 
 const streamCache = new NodeCache({ stdTTL: streamLifespan, checkperiod: 120 });
