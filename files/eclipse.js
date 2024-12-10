@@ -192,7 +192,7 @@ async function download(url) {
 
     let format = '';
 
-    if (url.includes(".youtube.com/") || url.includes("/youtu.be/")) {
+    if (url.includes("youtube.com/") || url.includes("/youtu.be/")) {
         format = `&format=${localStorage.getItem("youtubeFormat")}`
     }
 
