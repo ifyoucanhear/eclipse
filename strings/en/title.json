@@ -1,6 +1,8 @@
 {
-    "about": "what's this?",
+    "about": "what's {appName}?",
     "settings": "settings",
     "error": "uh-oh...",
-    "changelog": "what's new?"
+    "changelog": "what's new?",
+    "download": "download",
+    "pickDownload": "pick a way to save"
 }

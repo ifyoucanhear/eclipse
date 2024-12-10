@@ -23,12 +23,10 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
   - [ ] sort contents of .json files
   - [ ] rename each entry key to be less linked to specific service
 - [ ] add support for more languages when localisation clean up is done
-- [ ] clean up css
 - [ ] use esmbuild to minify frontend css and js
 - [ ] make switch buttons in settings selectable with keyboard
 - [ ] do something about changelog because the way it is right now is not really great
 - [ ] remake page rendering module to be more versatile
-- [ ] clean up code to be more consistent across modules
 - [ ] matching could be redone, i'll see what i can do
 - [ ] facebook and instagram support
 - [ ] tiktok support (?)
@@ -42,6 +40,7 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 ## npm modules
 
 - express
+- cors
 - got
 - url-pattern
 - xml-js
@@ -55,7 +54,7 @@ setup script installs all needed **npm** dependencies, but you have to install n
 
 1. clone the repo: `git clone https://github.com/ifyoucanhear/eclipse`
 2. run setup script and follow instructions: `npm run setup`
-3. run eclipse via `npm start` or `node eclipse`
+3. run eclipse via `npm start`
 4. done
 
 ## license
