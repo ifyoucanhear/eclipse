@@ -75,18 +75,6 @@ export default function(obj) {
                 <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}">${loc(obj.lang, 'changelog', 'github')}</a></div>
             </div>
         </div>
-        <div id="popup-donate" class="popup-narrow center box" style="visibility: hidden;">
-            <div id="popup-header" class="popup-header">
-                <button id="close" class="button mono" onclick="popup('donate', 0)" aria-label="${loc(obj.lang, 'accessibility', 'close')}">x</button>
-                <div id="title" class="popup-title">${loc(obj.lang, 'title', 'donate')}</div>
-                <div id="desc" class="little-subtitle">${loc(obj.lang, 'desc', 'donationsSub')}</div>
-            </div>
-            <div id="content" class="popup-content">
-                ${donate}
-                <div id="desc" class="explanation about-padding">${loc(obj.lang, 'desc', 'donations')}</div>
-                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${authorInfo.contact}">${loc(obj.lang, 'desc', 'donateDm')}</a></div>
-            </div>
-        </div>
         <div id="popup-settings" class="popup-narrow scrollable center box" style="visibility: hidden;">
             <div id="popup-header" class="popup-header">
                 <button id="close" class="button mono" onclick="popup('settings', 0)" aria-label="${loc(obj.lang, 'accessibility', 'close')}">x</button>
