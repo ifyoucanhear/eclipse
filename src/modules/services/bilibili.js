@@ -1,5 +1,5 @@
 import got from "got";
-import loc from "../sub/i18n.js";
+import loc from "../../localization/manager.js";
 import { genericUserAgent, maxVideoDuration } from "../config.js";
 
 export default async function(obj) {
@@ -9,7 +9,7 @@ export default async function(obj) {
         });
 
         html.on('error', (err) => {
-            return { error: loc(obj.lang, 'apiError', 'cantConnectToAPI', 'bilibili') };
+            return { error: loc(obj.lang, 'ErrorCantConnectToServiceAPI', 'bilibili') };
         });
 
         html = html.body;
@@ -30,12 +30,12 @@ export default async function(obj) {
                     urls: [video[0]["baseUrl"], audio[0]["baseUrl"]], time: streamData.data.timelength, filename: `bilibili_${obj.id}_${video[0]["width"]}x${video[0]["height"]}.mp4`
                 };
             } else {
-                return { error: loc(obj.lang, 'apiError', 'lengthLimit', maxVideoDuration / 60000) };
+                return { error: loc(obj.lang, 'ErrorLengthLimit', maxVideoDuration / 60000) };
             }
         } else {
-            return { error: loc(obj.lang, 'apiError', 'nothingToDownload') };
+            return { error: loc(obj.lang, 'ErrorEmptyDownload') };
         }
     } catch (e) {
-        return { error: loc(obj.lang, 'apiError', 'noFetch') };
+        return { error: loc(obj.lang, 'ErrorBadFetch') };
     }
 }

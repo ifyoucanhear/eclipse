@@ -1,7 +1,7 @@
 {
     "appName": "eclipse",
 
-    "version": "2.1",
+    "version": "2.2.5",
 
     "streamLifespan": 1800000,
     "maxVideoDuration": 1920000,
@@ -9,8 +9,6 @@
     "genericUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
     "repo": "https://github.com/ifyoucanhear/eclipse",
     
-    "supportedLanguages": ["en", "pt"],
-
     "authorInfo": {
         "name": "ifyoucanhear",
         "link": "https://github.com/ifyoucanhear"
