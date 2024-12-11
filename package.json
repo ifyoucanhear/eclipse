@@ -1,9 +1,9 @@
 {
   "name": "eclipse",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "easy to use social media downloader",
   "author": "ifyoucanhear",
-  "exports": "./eclipse.js",
+  "exports": "./src/eclipse.js",
   "type": "module",
   "engines": {
     "node": ">=14.16"

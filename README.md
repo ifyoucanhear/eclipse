@@ -4,13 +4,14 @@ sleek and easy to use social media downloader built on javascript.
 
 ## what is eclipse?
 
-everyone is annoyed by the mess video downloaders are on the web, and eclipse aims to be the ultimate social media downloader, that is sleek, easy to use, and doesn't bother you with ads or privacy invasion agreement popups.
+eclipse aims to be the ultimate social media downloader, that is sleek, easy to use, and doesn't bother you with ads or privacy invasion agreement popups.
 
 eclipse doesn't remux any videos, so videos you get are max quality available (unless you change that in settings).
 
 ## support
 
 - twitter
+- tiktok
 - youtube and youtube music
 - bilibili.com
 - reddit
@@ -18,20 +19,13 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 
 ## todo
 
+- [ ] instagram support
 - [ ] quality switching for bilibli and twitter
 - [ ] language picker in settings
-- [x] clean up the mess that localisation is right now
-  - [x] sort contents of .json files
-  - [x] rename each entry key to be less linked to specific service (entries like youtubeBroke are awful, i'm sorry)
-- [x] add support for more languages when localisation clean up is done
 - [ ] use esmbuild to minify frontend css and js
 - [ ] make switch buttons in settings selectable with keyboard
-- [ ] do something about changelog because the way it is right now is not really great
 - [ ] remake page rendering module to be more versatile
 - [ ] matching could be redone, i'll see what i can do
-- [ ] facebook and instagram support
-- [ ] tiktok support (?)
-- [ ] support for bilibili.tv (?)
 
 ## requirements
 
@@ -40,15 +34,14 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 
 ## npm modules
 
-- express
 - cors
-- got
-- url-pattern
-- xml-js
 - dotenv
+- express
 - express-rate-limit
 - ffmpeg-static
+- got
 - node-cache
+- xml-js
 - ytdl-core
 
 setup script installs all needed **npm** dependencies, but you have to install node.js and git yourself, if you don't have those already.
@@ -60,4 +53,4 @@ setup script installs all needed **npm** dependencies, but you have to install n
 
 ## license
 
-eclipse is under [gpl-3.0 license](https://github.com/ifyoucanhear/eclipse/LICENSE), keep that in mind when doing something with it.
+eclipse is under [agpl-3.0 license](https://github.com/ifyoucanhear/eclipse/LICENSE), keep that in mind when doing something with it.

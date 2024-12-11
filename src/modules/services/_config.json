@@ -94,8 +94,8 @@
     },
 
     "tiktok": {
-        "patterns": [":pageid/:type/:postid", ":id"],
+        "patterns": [":user/:type/:postId", ":id"],
 
-        "enabled": false
+        "enabled": true
     }
 }

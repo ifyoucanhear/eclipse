@@ -20,11 +20,11 @@ export async function streamDefault(streamInfo, res) {
         });
 
         stream.pipe(res).on('error', (err) => {
-            throw Error("erro no canal de fluxo de arquivo.");
+            internalError(res)
         });
 
         stream.on('error', (err) => {
-            throw Error("erro de fluxo de arquivo.")
+            internalError(res);
         });
     } catch (e) {
         internalError(res);
