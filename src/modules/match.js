@@ -39,7 +39,7 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                     });
 
                     return (!r.error) ? apiJSON(2, {
-                        type: "render", urls: r.urls,
+                        type: "render", urls: r.urls, lang: lang,
                         service: host, ip: ip,
                         filename: r.filename,
                         salt: process.env.streamSalt, time: r.time
@@ -91,7 +91,7 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                     });
 
                     return (!r.error) ? apiJSON(2, {
-                        type: "render", urls: r.urls,
+                        type: "render", urls: r.urls, lang: lang,
                         service: host, ip: ip,
                         filename: r.filename, salt: process.env.streamSalt
                     }) : apiJSON(0, { t: r.error });

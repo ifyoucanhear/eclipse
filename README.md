@@ -19,10 +19,11 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 ## todo
 
 - [ ] quality switching for bilibli and twitter
-- [ ] clean up the mess that localisation is right now
-  - [ ] sort contents of .json files
-  - [ ] rename each entry key to be less linked to specific service
-- [ ] add support for more languages when localisation clean up is done
+- [ ] language picker in settings
+- [x] clean up the mess that localisation is right now
+  - [x] sort contents of .json files
+  - [x] rename each entry key to be less linked to specific service (entries like youtubeBroke are awful, i'm sorry)
+- [x] add support for more languages when localisation clean up is done
 - [ ] use esmbuild to minify frontend css and js
 - [ ] make switch buttons in settings selectable with keyboard
 - [ ] do something about changelog because the way it is right now is not really great

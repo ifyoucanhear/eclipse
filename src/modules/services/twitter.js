@@ -63,6 +63,6 @@ export default async function (obj) {
             }
         } else return parsbod;
     } catch (err) {
-        return { error: loc("en", "apiError", "youtubeBroke") };
+        return { error: loc("en", "apiError", "errorFetch") };
     }
 }

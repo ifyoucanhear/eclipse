@@ -16,12 +16,6 @@ let enabledServices = Object.keys(s).filter((p) => {
     }
 }).join(', ')
 
-let donate = ``
-
-for (let i in donations) {
-    donate += `<div class="subtitle">${i} (${loc("en", 'desc', 'clickToCopy').trim()})</div><div id="don-${i}" class="text-to-copy" onClick="copy('don-${i}')">${donations[i]}</div>`
-}
-
 let com = getCommitInfo();
 
 export default function(obj) {
@@ -36,10 +30,10 @@ export default function(obj) {
         <title>${appName}</title>
         <meta property="og:url" content="${process.env.selfURL}" />
         <meta property="og:title" content="${appName}" />
-        <meta property="og:description" content="${loc(obj.lang, 'desc', 'embed')}" />
+        <meta property="og:description" content="${loc(obj.lang, 'strings', 'embed')}" />
         <meta property="og:image" content="${process.env.selfURL}icons/generic.png" />
         <meta name="title" content="${appName}" />
-        <meta name="description" content="${loc(obj.lang, 'desc', 'embed')}" />
+        <meta name="description" content="${loc(obj.lang, 'strings', 'embed')}" />
         <meta name="theme-color" content="#000000" />
         <meta name="twitter:card" content="summary" />
         <link rel="icon" type="image/x-icon" href="icons/favicon.ico" />
@@ -49,7 +43,7 @@ export default function(obj) {
         <link rel="manifest" href="eclipse.webmanifest" />
         <link rel="stylesheet" href="eclipse.css" />
         <link rel="stylesheet" href="fonts/notosansmono/notosansmono.css" />
-        <noscript><div style="margin: 2rem;">${loc(obj.lang, 'desc', 'noScript')}</div></noscript>
+        <noscript><div style="margin: 2rem;">${loc(obj.lang, 'strings', 'noScript')}</div></noscript>
     </head>
     <div id="popup-download" class="popup center box" style="visibility: hidden;">
             <div id="popup-header" class="popup-header">
@@ -60,11 +54,11 @@ export default function(obj) {
             <div id="theme-switcher" class="switch-container small-padding">
                 <div class="subtitle">${loc(obj.lang, 'title', 'pickDownload')}</div>
                 <div class="switches">
-                    <a id="pd-download" class="switch full space-right" target="_blank"">${loc(obj.lang, 'desc', 'download')}</a>
-                    <div id="pd-copy" class="switch full">${loc(obj.lang, 'desc', 'copy')}</div>
+                    <a id="pd-download" class="switch full space-right" target="_blank"">${loc(obj.lang, 'strings', 'download')}</a>
+                    <div id="pd-copy" class="switch full">${loc(obj.lang, 'strings', 'copy')}</div>
                 </div>
             </div>
-                <div id="desc" class="explanation about-padding">${isIOS ? loc(obj.lang, 'desc', 'iosDownload') : loc(obj.lang, 'desc', 'normalDownload')}</div>
+                <div id="desc" class="explanation about-padding">${isIOS ? loc(obj.lang, 'strings', 'iosDownload') : loc(obj.lang, 'desc', 'normalDownload')}</div>
             </div>
         </div>
         <div id="popup-about" class="popup center box" style="visibility: hidden;">
@@ -74,12 +68,12 @@ export default function(obj) {
                 <div id="title" class="popup-title">${loc(obj.lang, 'title', 'about')}</div>
             </div>
             <div id="content" class="popup-content with-footer">
-                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'aboutSummary')}</div>
-                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'supportedServices')} ${enabledServices}.</div>
-                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}">${loc(obj.lang, 'desc', 'sourceCode')}</a></div>
+                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'strings', 'aboutSummary')}</div>
+                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'strings', 'supportedServices')} ${enabledServices}.</div>
+                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}">${loc(obj.lang, 'strings', 'sourceCode')}</a></div>
             </div>
             <div id="popup-footer" class="popup-footer">
-                <a id="popup-bottom" class="popup-footer-content" href="${authorInfo.link}">${loc(obj.lang, 'desc', 'popupBottom')}</a>
+                <a id="popup-bottom" class="popup-footer-content" href="${authorInfo.link}">${loc(obj.lang, 'strings', 'popupBottom')}</a>
             </div>
         </div>
         <div id="popup-changelog" class="popup center box" style="visibility: hidden;">
@@ -90,7 +84,7 @@ export default function(obj) {
             </div>
             <div id="content" class="popup-content">
                 <div id="desc" class="popup-desc about-padding">${com[1]}</div>
-                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}/commits">${loc(obj.lang, 'desc', 'github')}</a></div>
+                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}/commits">${loc(obj.lang, 'strings', 'github')}</a></div>
             </div>
         </div>
         <div id="popup-settings" class="popup scrollable center box" style="visibility: hidden;">
@@ -147,7 +141,7 @@ export default function(obj) {
                             <div class="switches">
                                 <div id="youtubeFormat-mp4" class="switch full" onclick="changeSwitcher('youtubeFormat', 'mp4', 1)">mp4</div>
                                 <div id="youtubeFormat-webm" class="switch" onclick="changeSwitcher('youtubeFormat', 'webm', 1)">webm</div>
-                                <div id="youtubeFormat-audio" class="switch full" onclick="changeSwitcher('youtubeFormat', 'audio', 1)">audio only</div>
+                                <div id="youtubeFormat-audio" class="switch full" onclick="changeSwitcher('youtubeFormat', 'audio', 1)">${loc(obj.lang, 'settings', 'audioOnly')}</div>
                             </div>
                             <div class="explanation">${loc(obj.lang, 'settings', 'formatInfo')}</div>
                         </div>
@@ -168,7 +162,7 @@ export default function(obj) {
         <div id="eclipse-main-box" class="center box" style="visibility: hidden;">
             <div id="logo-area">${appName}</div>
             <div id="download-area" class="mobile-center">
-                <input id="url-input-area" class="mono" type="text" autocorrect="off" maxlength="110" autocapitalize="off" placeholder="${loc(obj.lang, 'desc', 'input')}" aria-label="${loc(obj.lang, 'accessibility', 'input')}" oninput="button()">
+                <input id="url-input-area" class="mono" type="text" autocorrect="off" maxlength="110" autocapitalize="off" placeholder="${loc(obj.lang, 'strings', 'input')}" aria-label="${loc(obj.lang, 'accessibility', 'input')}" oninput="button()">
                 <input id="download-button" class="mono dontRead" onclick="download(document.getElementById('url-input-area').value)" type="submit" value="" disabled=true aria-label="${loc(obj.lang, 'accessibility', 'download')}">
             </div>
         </div>
@@ -185,6 +179,6 @@ export default function(obj) {
     <script type="text/javascript" src="eclipse.js"></script>
 </html>`;
     } catch (err) {
-        return `${loc('en', 'apiError', 'fatal', obj.hash)}`;
+        return `${loc('en', 'apiError', 'noRender', obj.hash)}`;
     }
 }
