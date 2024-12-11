@@ -28,7 +28,7 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                         lang: lang, quality: quality
                     });
 
-                    return (!r.error) ? apiJSON(2, { type: "bridge", urls: r.url, filename: r.filename, service: host, ip: ip, salt: process.env.streamSalt }) : apiJSON(0, { t: r.error });
+                    return (!r.error) ? apiJSON(2, { type: "bridge", u: r.url, filename: r.filename, service: host, ip: ip, salt: process.env.streamSalt }) : apiJSON(0, { t: r.error });
                 } else throw Error()
 
             case "bilibili":
@@ -39,7 +39,7 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                     });
 
                     return (!r.error) ? apiJSON(2, {
-                        type: "render", urls: r.urls, lang: lang,
+                        type: "render", u: r.urls, lang: lang,
                         service: host, ip: ip,
                         filename: r.filename,
                         salt: process.env.streamSalt, time: r.time
@@ -75,7 +75,7 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                     let r = await youtube(fetchInfo);
 
                     return (!r.error) ? apiJSON(2, {
-                        type: r.type, urls: r.urls, service: host, ip: ip,
+                        type: r.type, u: r.urls, service: host, ip: ip,
                         filename: r.filename, salt: process.env.streamSalt,
                         isAudioOnly: fetchInfo["isAudioOnly"] ? fetchInfo["isAudioOnly"] : false,
                         time: r.time
@@ -90,8 +90,8 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                         title: patternMatch["title"]
                     });
 
-                    return (!r.error) ? apiJSON(2, {
-                        type: "render", urls: r.urls, lang: lang,
+                    return (!r.error) ? apiJSON(r.typeId, {
+                        type: r.type, u: r.urls, lang: lang,
                         service: host, ip: ip,
                         filename: r.filename, salt: process.env.streamSalt
                     }) : apiJSON(0, { t: r.error });

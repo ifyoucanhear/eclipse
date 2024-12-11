@@ -14,5 +14,4 @@ export const
     supportedLanguages = config.supportedLanguages,
     quality = config.quality,
     internetExplorerRedirect = config.internetExplorerRedirect,
-    donations = config.donations,
     ffmpegArgs = config.ffmpegArgs
