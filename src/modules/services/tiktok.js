@@ -21,7 +21,11 @@ export default async function (obj) {
 
             html = html.body;
 
-            obj.postId = html.split('video/')[1].split('?')[0]
+            if (!html.includes('<!DOCTYPE html>')) {
+                obj.postId = html.split('video/')[1].split('?')[0]
+            } else {
+                obj.postId = html.split('aweme/detail/')[1].split('?')[0]
+            }
         }
 
         let url = `https://tiktok.com/@video/video/${obj.postId}`
