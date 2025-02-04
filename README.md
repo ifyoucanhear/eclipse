@@ -39,6 +39,7 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 
 - cors
 - dotenv
+- esbuild
 - express
 - express-rate-limit
 - ffmpeg-static
