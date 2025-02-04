@@ -97,5 +97,11 @@
         "patterns": ["video/:postId", ":id"],
 
         "enabled": true
+    },
+
+    "vimeo": {
+        "patterns": [":id"],
+
+        "enabled": true
     }
 }

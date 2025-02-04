@@ -10,7 +10,7 @@ it preserves original media quality so you get best downloads possible (unless y
 
 ## supported services
 
-### video
+### video and audio
 
 - bilibili.com
 - douyin
@@ -19,9 +19,13 @@ it preserves original media quality so you get best downloads possible (unless y
 - tumblr
 - twitter
 - youtube (with hdr support)
+
+### only video
+
+- vimeo
 - vk
 
-### audio
+### only audio
 
 - youtube
 - youtube music
@@ -47,8 +51,8 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 - you can add wordplays or puns if it feels natural to do so
 - even though i love cursing, keep that away from translations
 - always check if there are issues in UI with your localization
-- there's no need to translate `changelogcontenttitle` and `changelogcontent`, because those are very often changed
-- add "(in english)" to `changeloglastcommit` and `changeloglastmajor`, because those are almost always kept exclusively in english. remove that phrase if you do translate major update changelog
+- there's no need to translate `changelogcontenttitle` and `changelogcontent`, because those are very often changed. you can remove both of them from your translation file
+- add "(in english)" in translation language to `changeloglastcommit` and `changeloglastmajor`, because those are almost always kept exclusively in english. remove that phrase if you do translate major update changelog
 - be nice
 
 ## todo
@@ -65,6 +69,7 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 
 ### other
 
+- [ ] remake video quality picking (do it more like i did in vimeo module)
 - [ ] add support for emoji in localization
 - [ ] language picker in settings
 - [ ] make eclipse fully pwa compatible (add a service worker)
