@@ -12,7 +12,7 @@ import tumblr from "./services/tumblr.js";
 import matchActionDecider from "./sub/matchActionDecider.js";
 import vimeo from "./services/vimeo.js";
 
-export default async function (host, patternMatch, url, ip, lang, format, quality, audioFormat, isAudioOnly) {
+export default async function (host, patternMatch, url, ip, lang, format, quality, audioFormat, isAudioOnly, noWatermark) {
     try {
         if (!testers[host])
             return apiJSON(0, { t: errorUnsupported(lang) });
@@ -82,7 +82,8 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                 r = await reddit({
                     sub: patternMatch["sub"],
                     id: patternMatch["id"],
-                    title: patternMatch["title"], lang: lang
+                    title: patternMatch["title"],
+                    lang: lang
                 });
 
                 break;
@@ -90,7 +91,9 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
             case "tiktok":
                 r = await tiktok({
                     postId: patternMatch["postId"],
-                    id: patternMatch["id"], lang: lang
+                    id: patternMatch["id"],
+                    lang: lang,
+                    noWatermark: noWatermark
                 });
 
                 break;
@@ -98,14 +101,18 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
             case "douyin":
                 r = await douyin({
                     postId: patternMatch["postId"],
-                    id: patternMatch["id"], lang: lang
+                    id: patternMatch["id"],
+                    lang: lang,
+                    noWatermark: noWatermark
                 });
 
                 break;
 
             case "tumblr":
                 r = await tumblr({
-                    id: patternMatch["id"], url: url, user: patternMatch["user"] ? patternMatch["user"] : false,
+                    id: patternMatch["id"],
+                    url: url,
+                    user: patternMatch["user"] ? patternMatch["user"] : false,
                     lang: lang
                 });
 

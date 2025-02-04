@@ -17,6 +17,14 @@ function eid(id) {
     return document.getElementById(id)
 }
 
+function sGet(id) {
+    return localStorage.getItem(id);
+}
+
+function sSet(id, value) {
+    localStorage.setItem(id, value);
+}
+
 function enable(id) {
     eid(id).dataset.enabled = "true";
 }
@@ -38,7 +46,7 @@ function changeDownloadButton(action, text) {
         case 0:
             eid("download-button").disabled = true
 
-            if (localStorage.getItem("alwaysVisibleButton") == "true") {
+            if (sGet("alwaysVisibleButton") == "true") {
                 eid("download-button").value = text
                 eid("download-button").style.padding = '0 1rem'
             } else {
@@ -89,7 +97,7 @@ function copy(id, data) {
 
 function detectColorScheme() {
     let theme = "auto";
-    let localTheme = localStorage.getItem("theme");
+    let localTheme = sGet("theme");
 
     if (localTheme) {
         theme = localTheme;
@@ -135,14 +143,14 @@ function popup(type, action, text) {
             let tabId = text ? text : "changelog";
 
             if (tabId == "changelog") {
-                localStorage.setItem("changelogStatus", version)
+                sSet("changelogStatus", version)
             }
 
             eid(`tab-button-${type}-${tabId}`).click();
             eid("popup-about").style.visibility = vis(action);
 
-            if (!localStorage.getItem("seenAbout"))
-                localStorage.setItem("seenAbout", "true");
+            if (!sGet("seenAbout"))
+                sSet("seenAbout", "true");
 
             break;
 
@@ -177,7 +185,7 @@ function popup(type, action, text) {
 
 function changeSwitcher(li, b) {
     if (b) {
-        localStorage.setItem(li, b);
+        sSet(li, b);
 
         for (i in switchers[li]) {
             (switchers[li][i] == b) ? enable(`${li}-${b}`) : disable(`${li}-${switchers[li][i]}`)
@@ -188,7 +196,7 @@ function changeSwitcher(li, b) {
     } else {
         let pref = switchers[li][0];
 
-        localStorage.setItem(li, pref);
+        sSet(li, pref);
 
         if (isIOS && exceptions[li])
             pref = exceptions[li];
@@ -209,12 +217,12 @@ function internetError() {
 
 function checkbox(action) {
     if (eid(action).checked) {
-        localStorage.setItem(action, "true");
+        sSet(action, "true");
 
         if (action == "alwaysVisibleButton")
             button();
     } else {
-        localStorage.setItem(action, "false");
+        sSet(action, "false");
 
         if (action == "alwaysVisibleButton")
             button();
@@ -222,35 +230,35 @@ function checkbox(action) {
 }
 
 function loadSettings() {
-    if (localStorage.getItem("alwaysVisibleButton") == "true") {
+    if (sGet("alwaysVisibleButton") == "true") {
         eid("alwaysVisibleButton").checked = true;
         eid("download-button").value = '>>'
         eid("download-button").style.padding = '0 1rem';
     }
 
-    if (localStorage.getItem("downloadPopup") == "true" && !isIOS) {
+    if (sGet("downloadPopup") == "true" && !isIOS) {
         eid("downloadPopup").checked = true;
     }
 
-    if (!localStorage.getItem("audioMode")) {
+    if (!sGet("audioMode")) {
         toggle("audioMode");
     }
 
-    updateToggle("audioMode", localStorage.getItem("audioMode"));
+    updateToggle("audioMode", sGet("audioMode"));
 
     for (let i in switchers) {
-        changeSwitcher(i, localStorage.getItem(i));
+        changeSwitcher(i, sGet(i));
     }
 }
 
 function checkbox(action) {
     if (eid(action).checked) {
-        localStorage.setItem(action, "true");
+        sSet(action, "true");
 
         if (action == "alwaysVisibleButton")
             button();
     } else {
-        localStorage.setItem(action, "false");
+        sSet(action, "false");
 
         if (action == "alwaysVisibleButton")
             button();
@@ -258,15 +266,15 @@ function checkbox(action) {
 }
 
 function toggle(toggle) {
-    let state = localStorage.getItem(toggle);
+    let state = sGet(toggle);
 
     if (state) {
-        localStorage.setItem(toggle, opposite(state));
+        sSet(toggle, opposite(state));
     } else {
-        localStorage.setItem(toggle, "false");
+        sSet(toggle, "false");
     }
 
-    updateToggle(toggle, localStorage.getItem(toggle));
+    updateToggle(toggle, sGet(toggle));
 }
 
 function updateToggle(toggle, state) {
@@ -288,11 +296,22 @@ async function download(url) {
 
     eid("url-input-area").disabled = true;
 
-    let audioMode = localStorage.getItem("audioMode");
-    let format = (url.includes("youtube.com/") && audioMode == "false" || url.includes("/youtu.be/") && audioMode == "false") ? `&format=${localStorage.getItem("ytFormat")}` : '';
-    let mode = (localStorage.getItem("audioMode") == "true") ? `audio=true` : `quality=${localStorage.getItem("quality")}`;
-    
-    fetch(`/api/json?audioFormat=${localStorage.getItem("audioFormat")}&${mode}${format}&url=${encodeURIComponent(url)}`).then(async (response) => {
+    let audioMode = sGet("audioMode");
+    let format = ``;
+
+    if (audioMode == "false") {
+        if (url.includes("youtube.com/") || url.includes("/youtu.be/")) {
+            format = `&format=${sGet("ytFormat")}`;
+        } else if ((url.includes("tiktok.com/") || url.includes("douyin.com/")) && sGet("disableTikTokWatermark") == "true") {
+            format = `&nw=true`;
+        }
+    } else {
+        format = `&nw=true`;
+    }
+
+    let mode = (sGet("audioMode") == "true") ? `audio=true` : `quality=${sGet("quality")}`;
+
+    fetch(`/api/json?audioFormat=${sGet("audioFormat")}&${mode}${format}&url=${encodeURIComponent(url)}`).then(async (response) => {
         let j = await response.json();
 
         if (j.status != "error" && j.status != "rate-limit") {
@@ -307,7 +326,7 @@ async function download(url) {
                             eid("url-input-area").disabled = false
                         }, 3000)
 
-                        if (localStorage.getItem("downloadPopup") == "true") {
+                        if (sGet("downloadPopup") == "true") {
                             popup('download', 1, j.url)
                         } else {
                             window.open(j.url, '_blank');
@@ -369,14 +388,22 @@ window.onload = () => {
     eid("footer").style.visibility = 'visible';
     eid("url-input-area").value = "";
 
-    if (!localStorage.getItem("seenAbout")) {
+    if (!sGet("seenAbout")) {
         popup('about', 1, "about");
-    } else if (localStorage.getItem("changelogStatus") != `${version}` && localStorage.getItem("disableChangelog") != "true") {
+    } else if (sGet("changelogStatus") != `${version}` && sGet("disableChangelog") != "true") {
         popup('about', 1, "changelog");
     }
 
     if (isIOS)
-        localStorage.setItem("downloadPopup", "true");
+        sSet("downloadPopup", "true");
+
+    let urlQuery = new URLSearchParams(window.location.search).get("u");
+    
+    if (urlQuery != null) {
+        eid("url-input-area").value = urlQuery;
+
+        button();
+    }
 }
 
 eid("url-input-area").addEventListener("keyup", (event) => {

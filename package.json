@@ -1,6 +1,6 @@
 {
   "name": "eclipse",
-  "version": "3.0",
+  "version": "3.1",
   "description": "save what you love",
   "author": "ifyoucanhear",
   "exports": "./src/eclipse.js",

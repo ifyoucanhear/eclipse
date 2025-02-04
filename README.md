@@ -13,9 +13,9 @@ it preserves original media quality so you get best downloads possible (unless y
 ### video and audio
 
 - bilibili.com
-- douyin
+- douyin (with/without watermark, preference set by user)
 - reddit
-- tiktok
+- tiktok (with/without watermark, preference set by user)
 - tumblr
 - twitter
 - youtube (with hdr support)
@@ -64,8 +64,8 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 - [ ] soundcloud support
 - [ ] add an option to save twitter gifs as `.gif` instead of `.mp4`
 - [ ] quality switching for bilibili
-- [ ] find a way to get tiktok videos without a watermark
-- [ ] add an option to keep watermark on tiktok videos
+- [x] find a way to get tiktok videos without a watermark
+- [x] add an option to keep watermark on tiktok videos
 
 ### other
 
