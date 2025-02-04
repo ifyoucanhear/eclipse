@@ -4,8 +4,6 @@ import got from "got";
 
 import { ffmpegArgs, genericUserAgent } from "../config.js";
 import { msToTime } from "../sub/utils.js";
-import { internalError } from "../sub/errors.js";
-import loc from "../../localization/manager.js";
 
 export async function streamDefault(streamInfo, res) {
     try {
@@ -20,18 +18,18 @@ export async function streamDefault(streamInfo, res) {
         });
 
         stream.pipe(res).on('error', (err) => {
-            internalError(res)
+            res.end();
         });
 
         stream.on('error', (err) => {
-            internalError(res);
+            res.end();
         });
     } catch (e) {
-        internalError(res);
+        res.end();
     }
 }
 
-export async function streamLiveRender(streamInfo, res, lang) {
+export async function streamLiveRender(streamInfo, res) {
     try {
         if (streamInfo.urls.length == 2) {
             let headers = {};
@@ -67,34 +65,54 @@ export async function streamLiveRender(streamInfo, res, lang) {
                 ],
             });
 
-            ffmpegProcess.on('error', (err) => {
-                ffmpegProcess.kill();
-            });
-
-            audio.on('error', (err) => {
-                ffmpegProcess.kill();
-            });
-
-            video.on('error', (err) => {
-                ffmpegProcess.kill();
-            });
-
             res.setHeader('Content-Disposition', `attachment; filename="${streamInfo.filename}"`);
 
             ffmpegProcess.stdio[5].pipe(res);
 
+            ffmpegProcess.on('error', (err) => {
+                ffmpegProcess.kill();
+
+                res.end();
+
+                return;
+            });
+
             video.pipe(ffmpegProcess.stdio[3]).on('error', (err) => {
                 ffmpegProcess.kill();
+
+                res.end();
+
+                return;
             });
 
             audio.pipe(ffmpegProcess.stdio[4]).on('error', (err) => {
                 ffmpegProcess.kill();
+
+                res.end();
+
+                return;
+            });
+
+            audio.on('error', (err) => {
+                ffmpegProcess.kill();
+
+                res.end();
+
+                return;
+            });
+
+            video.on('error', (err) => {
+                ffmpegProcess.kill();
+
+                res.end();
+
+                return;
             });
         } else {
-            res.status(400).json({ status: "error", text: loc(lang, 'ErrorCorruptedStream') });
+            res.end();
         }
     } catch (e) {
-        internalError(res);
+        res.end();
     }
 }
 
@@ -134,10 +152,14 @@ export async function streamAudioOnly(streamInfo, res) {
 
         ffmpegProcess.on('error', (err) => {
             ffmpegProcess.kill();
+
+            res.end();
         });
 
         audio.on('error', (err) => {
             ffmpegProcess.kill();
+
+            res.end();
         });
 
         res.setHeader('Content-Disposition', `attachment; filename="${streamInfo.filename}.${streamInfo.audioFormat}"`);
@@ -146,8 +168,10 @@ export async function streamAudioOnly(streamInfo, res) {
 
         audio.pipe(ffmpegProcess.stdio[3]).on('error', (err) => {
             ffmpegProcess.kill();
+            
+            res.end();
         });
     } catch (e) {
-        internalError(res);
+        res.end();
     }
 }

@@ -81,7 +81,7 @@ if (fs.existsSync('./.env')) {
                     } else {
                         let j = apiJSON(3, {
                             t: loc(languageCode(req), 'ErrorNoLink', process.env.selfURL)
-                        })
+                        });
 
                         res.status(j.status).json(j.body);
                     }
@@ -92,9 +92,9 @@ if (fs.existsSync('./.env')) {
                     if (req.query.p) {
                         res.status(200).json({ "status": "continue" });
                     } else if (req.query.t) {
-                        let ip = req.header('x-forwarded-for') ? req.header('x-forwarded-for') : req.ip
+                        let ip = req.header('x-forwarded-for') ? req.header('x-forwarded-for') : req.ip;
                         
-                        stream(res, ip, req.query.t, req.query.h, req.query.e, languageCode(req));
+                        stream(res, ip, req.query.t, req.query.h, req.query.e);
                     } else {
                         let j = apiJSON(0, { t: loc(languageCode(req), 'ErrorNoStreamID') })
                         
