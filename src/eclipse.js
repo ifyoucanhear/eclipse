@@ -11,9 +11,9 @@ import { getJSON } from "./modules/api.js";
 import { apiJSON, languageCode } from "./modules/sub/utils.js";
 import { Bright, Cyan } from "./modules/sub/consoleText.js";
 import { buildFront } from "./modules/build.js";
+import loc, { loadLoc } from "./localization/manager.js";
 import renderPage from "./modules/pageRender.js";
 import stream from "./modules/stream/stream.js";
-import loc from "./localization/manager.js";
 
 const commitHash = shortCommit();
 const app = express();

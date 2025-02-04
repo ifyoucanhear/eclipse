@@ -2,7 +2,8 @@ import { services, appName, authorInfo, version, quality, repo } from "./config.
 import { getCommitInfo } from "./sub/currentCommit.js";
 import loc from "../localization/manager.js";
 
-let s = services
+let s = services;
+let com = getCommitInfo();
 
 let enabledServices = Object.keys(s).filter((p) => {
     if (s[p].enabled) {
@@ -15,8 +16,6 @@ let enabledServices = Object.keys(s).filter((p) => {
         return p
     }
 }).join(', ')
-
-let com = getCommitInfo();
 
 export default function(obj) {
     let isIOS = obj.useragent.toLowerCase().match("iphone os")
@@ -181,7 +180,7 @@ export default function(obj) {
             </div>
         </footer>
     </body>
-    <script type="text/javascript">const loc = {noInternet:"${loc(obj.lang, 'ErrorNoInternet')}", noURLReturned: "${loc(obj.lang, 'ErrorBadFetch')}"}</script>
+    <script type="text/javascript">const loc = {noInternet:"${loc(obj.lang, 'ErrorNoInternet')}", noURLReturned: "${loc(obj.lang, 'ErrorBadFetch')}"};</script>
     <script type="text/javascript" src="eclipse.js"></script>
 </html>`;
     } catch (err) {

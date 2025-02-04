@@ -53,7 +53,7 @@ function changeDownloadButton(action, text) {
     }
 }
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     if (event.key == "Tab") {
         eid("download-button").value = '>>'
         eid("download-button").style.padding = '0 1rem'
@@ -110,7 +110,7 @@ function popup(type, action, text) {
         case "download":
             if (action == 1) {
                 eid("pd-download").href = text;
-                eid("pd-copy").setAttribute("onClick", `copy('pd-copy', '${text}')` );
+                eid("pd-copy").setAttribute("onClick", `copy('pd-copy', '${text}')`);
             }
 
             eid("popup-download").style.visibility = vis(action);
@@ -204,9 +204,10 @@ async function download(url) {
 
                         setTimeout(() => {
                             changeDownloadButton(1, '>>')
-                            
+
                             eid("url-input-area").disabled = false
                         }, 3000)
+
                         if (localStorage.getItem("downloadPopup") == "true") {
                             popup('download', 1, j.url)
                         } else {
@@ -223,28 +224,38 @@ async function download(url) {
 
                             if (jp.status == "continue") {
                                 changeDownloadButton(2, '>>>')
-
+                                
                                 window.location.href = j.url
 
                                 setTimeout(() => {
                                     changeDownloadButton(1, '>>')
+
                                     eid("url-input-area").disabled = false
                                 }, 5000)
                             } else {
                                 eid("url-input-area").disabled = false
+
                                 changeDownloadButton(2, '!!')
+
                                 popup("error", 1, jp.text);
                             }
                         }).catch((error) => internetError());
 
                         break;
+                }
+            } else {
+                eid("url-input-area").disabled = false
+
+                changeDownloadButton(2, '!!')
+
+                popup("error", 1, loc.noURLReturned);
             }
         } else {
             eid("url-input-area").disabled = false
 
             changeDownloadButton(2, '!!')
 
-            popup("error", 1, loc.noURLReturned);
+            popup("error", 1, j.text);
         }
     }).catch((error) => internetError());
 }

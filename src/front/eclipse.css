@@ -2,6 +2,7 @@
     --transparent: rgba(0, 0, 0, 0);
     --without-padding: calc(100% - 4rem);
     --border-15: 0.15rem solid var(--accent);
+    --font-mono: 'Noto Sans Mono', 'Consolas', 'SF Mono', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,7 +50,7 @@ body {
     margin: 0;
     background: var(--background);
     color: var(--accent);
-    font-family: 'Noto Sans Mono', 'Consolas', 'SF Mono', monospace;
+    font-family: var(--font-mono);
     user-select: none;
     -webkit-tap-highlight-color: var(--transparent);
     overflow: hidden;
@@ -103,7 +104,7 @@ a {
 button {
     background: none;
     border: none;
-    font-family: 'Noto Sans Mono', 'Consolas', 'SF Mono', monospace;
+    font-family: var(--font-mono);
     color: var(--accent);
     font-size: 0.9rem;
 }
@@ -151,7 +152,7 @@ input[type="checkbox"] {
 }
 
 .mono {
-    font-family: 'Noto Sans Mono', 'Consolas', 'SF Mono', monospace;
+    font-family: var(--font-mono);
 }
 
 .center {
@@ -196,14 +197,14 @@ input[type="checkbox"] {
     color: var(--accent);
     border: 0;
     float: right;
-    border-bottom: 0.1rem solid var(--accent-unhover);
+    border-bottom: 0.15rem solid var(--accent-unhover);
     transition: border-bottom 0.2s;
     outline: none;
 }
 
 #url-input-area:focus {
     outline: none;
-    border-bottom: 0.1rem solid var(--accent);
+    border-bottom: var(--border-15);
 }
 
 #download-button {
@@ -390,7 +391,7 @@ input[type="checkbox"] {
     align-content: center;
     padding: 0.6rem;
     padding-right: 1rem;
-    border: 0.1rem solid;
+    border: var(--border-15);
     width: auto;
     margin: 0 0.5rem 0.5rem 0;
 }
@@ -426,8 +427,8 @@ input[type="checkbox"] {
 }
 
 .switch {
-    border-top: solid 0.1rem var(--accent);
-    border-bottom: solid 0.1rem var(--accent);
+    border-top: var(--border-15);
+    border-bottom: var(--border-15);
     padding: 0.8rem;
     width: 100%;
     text-align: center;
@@ -439,15 +440,15 @@ input[type="checkbox"] {
 }
 
 .switch.full {
-    border: solid 0.1rem var(--accent);
+    border: var(--border-15);
 }
 
 .switch.left {
-    border-left: solid 0.1rem var(--accent);
+    border-left: var(--border-15);
 }
 
 .switch.right {
-    border-right: solid 0.1rem var(--accent);
+    border-right: var(--border-15);
 }
 
 .switch.space-right {
