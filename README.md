@@ -1,10 +1,12 @@
 # eclipse
 
-sleek and easy to use social media downloader built on javascript.
+best way to save content you love.
 
 ## what's eclipse?
 
-eclipse aims to be the ultimate social media downloader, that is sleek, easy to use, and doesn't bother you with ads or privacy invasion agreement popups. it also doesn't remux anything, so you get media in best quality possible (unless you change that in settings).
+eclipse is social media downloader with zero bullshit. It's efficient, easy to use, and doesn't bother you with ads or privacy invasion "consent" popups.
+
+it preserves original media quality so you get best downloads possible (unless you change that in settings).
 
 ## supported services
 
@@ -16,8 +18,7 @@ eclipse aims to be the ultimate social media downloader, that is sleek, easy to 
 - tiktok
 - tumblr
 - twitter
-- youtube
-- youtube music
+- youtube (with hdr support)
 - vk
 
 ### audio
@@ -57,6 +58,8 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 - [ ] soundcloud support
 - [ ] add an option to save twitter gifs as `.gif` instead of `.mp4`
 - [ ] quality switching for bilibili
+- [ ] find a way to get tiktok videos without a watermark
+- [ ] add an option to keep watermark on TikTok videos
 
 ### other
 
