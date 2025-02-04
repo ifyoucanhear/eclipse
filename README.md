@@ -10,24 +10,15 @@ it preserves original media quality so you get best downloads possible (unless y
 
 ## supported services
 
-### video and audio
-
 - bilibili.com
 - douyin (with/without watermark, preference set by user)
 - reddit
 - tiktok (with/without watermark, preference set by user)
 - tumblr
 - twitter
-- youtube (with hdr support)
-
-### only video
-
 - vimeo
 - vk
-
-### only audio
-
-- youtube
+- youtube (with hdr support)
 - youtube music
 
 ## translations
@@ -36,6 +27,7 @@ it preserves original media quality so you get best downloads possible (unless y
 - french
 - indonesian
 - polish
+- ukranian
 
 ## speak your language
 
@@ -45,14 +37,15 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 
 - use informal language on all occasions
 - strings are always lowercase unless it's an internal value
-- keep translations as friendly and fun as possible
-- word-for-word translations from original language are not valid
-- you can rephrase sentences as long as they keep the same sense
+- keep translations as friendly and fun as possible. just as if cobalt user was your buddy
+- robotic translations from original language are not valid
+- you can (and should) rephrase sentences as long as they keep the same sense, if you think it'd be better that way
 - you can add wordplays or puns if it feels natural to do so
-- even though i love cursing, keep that away from translations
+- even though i love cursing, keep that to minimum in translations, and do **not** use offensive words
 - always check if there are issues in UI with your localization
 - there's no need to translate `changelogcontenttitle` and `changelogcontent`, because those are very often changed. you can remove both of them from your translation file
 - add "(in english)" in translation language to `changeloglastcommit` and `changeloglastmajor`, because those are almost always kept exclusively in english. remove that phrase if you do translate major update changelog
+  - example: `"changeloglastcommit": "последний коммит (на английском)"`
 - be nice
 
 ## todo

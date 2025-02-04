@@ -72,7 +72,6 @@ export default function(obj) {
                 name: "about",
                 title: `${emoji("🐲")} ${loc(obj.lang, 'AboutTab')}`,
                 content: popup({
-                    embed: true,
                     name: "about",
                     header: {
                         aboveTitle: {
@@ -95,7 +94,6 @@ export default function(obj) {
                 name: "changelog",
                 title: `${emoji("🎉")} ${loc(obj.lang, 'ChangelogTab')}`,
                 content: popup({
-                    embed: true,
                     name: "changelog",
                     header: {
                         closeAria: loc(obj.lang, 'AccessibilityClosePopup'),
@@ -128,7 +126,6 @@ export default function(obj) {
                 name: "donate",
                 title: `${emoji("💰")} ${loc(obj.lang, 'DonationsTab')}`,
                 content: popup({
-                    embed: true,
                     name: "donate",
                     header: {
                         closeAria: loc(obj.lang, 'AccessibilityClosePopup'),
@@ -244,6 +241,7 @@ export default function(obj) {
         })}
         ${popup({
             name: "download",
+            standalone: true,
             header: {
                 closeAria: loc(obj.lang, 'AccessibilityClosePopup'),
                 subtitle: loc(obj.lang, 'TitlePopupDownload')
@@ -258,11 +256,16 @@ export default function(obj) {
         })}
         ${popup({
             name: "error",
+            standalone: true,
+            buttonOnly: true,
+            emoji: emoji("☹️", 48, 1),
+            classes: ["small"],
+            buttonText: loc(obj.lang, 'ErrorPopupCloseButton'),
             header: {
                 closeAria: loc(obj.lang, 'AccessibilityClosePopup'),
                 title: loc(obj.lang, 'TitlePopupError')
             },
-            body: `<div id="desc-error"></div>`
+            body: `<div id="desc-error" class="desc-padding subtext"></div>`
         })}
         <div id="popup-backdrop" style="visibility: hidden;" onclick="hideAllPopups()"></div>
         <div id="eclipse-main-box" class="center box" style="visibility: hidden;">
