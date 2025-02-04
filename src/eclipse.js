@@ -8,12 +8,12 @@ import rateLimit from "express-rate-limit";
 import { shortCommit } from "./modules/sub/currentCommit.js";
 import { appName, genericUserAgent, version, internetExplorerRedirect } from "./modules/config.js";
 import { getJSON } from "./modules/api.js";
-import renderPage from "./modules/pageRender.js";
 import { apiJSON, languageCode } from "./modules/sub/utils.js";
 import { Bright, Cyan } from "./modules/sub/consoleText.js";
+import { buildFront } from "./modules/build.js";
+import renderPage from "./modules/pageRender.js";
 import stream from "./modules/stream/stream.js";
 import loc from "./localization/manager.js";
-import { buildFront } from "./modules/build.js";
 
 const commitHash = shortCommit();
 const app = express();

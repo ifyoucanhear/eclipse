@@ -1,6 +1,7 @@
 import got from "got";
-import loc from "../../localization/manager.js";
+
 import { genericUserAgent, maxVideoDuration } from "../config.js";
+import loc from "../../localization/manager.js";
 
 export default async function(obj) {
     try {

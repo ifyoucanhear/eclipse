@@ -10,6 +10,7 @@ export const
     streamLifespan = config.streamLifespan,
     maxVideoDuration = config.maxVideoDuration,
     genericUserAgent = config.genericUserAgent,
+    mobileUserAgent = config.mobileUserAgent,
     repo = packageJson["bugs"]["url"].replace('/issues', ''),
     authorInfo = config.authorInfo,
     supportedLanguages = config.supportedLanguages,

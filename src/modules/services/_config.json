@@ -97,5 +97,11 @@
         "patterns": [":user/:type/:postId", ":id"],
 
         "enabled": true
+    },
+
+    "douyin": {
+        "patterns": ["video/:postId", ":id"],
+
+        "enabled": true
     }
 }

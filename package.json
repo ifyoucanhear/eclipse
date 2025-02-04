@@ -1,6 +1,6 @@
 {
   "name": "eclipse",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "easy to use social media downloader",
   "author": "ifyoucanhear",
   "exports": "./src/eclipse.js",
