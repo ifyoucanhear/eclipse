@@ -106,7 +106,7 @@ export async function streamAudioOnly(streamInfo, res) {
             headers = { "user-agent": genericUserAgent };
         }
 
-        const audio = got.get(streamInfo.urls[0], { isStream: true, headers: headers });
+        const audio = got.get(streamInfo.urls, { isStream: true, headers: headers });
 
         const ffmpegProcess = spawn(ffmpeg, [
             '-loglevel', '-8',

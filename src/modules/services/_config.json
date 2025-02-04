@@ -76,13 +76,7 @@
     },
 
     "tumblr": {
-        "patterns": ["post/:id"],
-
-        "enabled": false
-    },
-
-    "facebook": {
-        "patterns": [":pageid/:type/:postid"],
+        "patterns": ["post/:id", "blog/view/:user/:id"],
 
         "enabled": false
     },
