@@ -1,6 +1,6 @@
 {
   "name": "eclipse",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "easy to use social media downloader",
   "author": "ifyoucanhear",
   "exports": "./src/eclipse.js",
@@ -21,6 +21,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
+    "esbuild": "^0.14.51",
     "express": "^4.17.1",
     "express-rate-limit": "^6.3.0",
     "ffmpeg-static": "^5.0.0",

@@ -22,7 +22,7 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 - [ ] instagram support
 - [ ] quality switching for bilibli and twitter
 - [ ] language picker in settings
-- [ ] use esmbuild to minify frontend css and js
+- [ ] make eclipse fully pwa compatible (add a service worker)
 - [ ] make switch buttons in settings selectable with keyboard
 - [ ] remake page rendering module to be more versatile
 - [ ] matching could be redone, i'll see what i can do
