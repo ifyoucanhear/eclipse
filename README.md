@@ -30,6 +30,7 @@ eclipse aims to be the ultimate social media downloader, that is sleek, easy to 
 - spanish
 - french
 - indonesian
+- polish
 
 ## speak your language
 
