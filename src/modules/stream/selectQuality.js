@@ -8,27 +8,27 @@ function closest(goal, array) {
 
 export default function(service, quality, maxQuality) {
     if (quality == "max") {
-        return maxQuality
+        return maxQuality;
     }
 
-    quality = parseInt(mq[quality])
-    maxQuality = parseInt(maxQuality)
+    quality = parseInt(mq[quality]);
+    maxQuality = parseInt(maxQuality);
 
     if (quality >= maxQuality || quality == maxQuality) {
-        return maxQuality
+        return maxQuality;
     }
 
     if (quality < maxQuality) {
         if (services[service]["quality"][quality]) {
-            return quality
+            return quality;
         } else {
             let s = Object.keys(services[service]["quality_match"]).filter((q) => {
                 if (q <= quality) {
-                    return true
+                    return true;
                 }
             })
             
-            return closest(quality, s)
+            return closest(quality, s);
         }
     }
 }

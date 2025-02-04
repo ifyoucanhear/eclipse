@@ -62,7 +62,7 @@ export function popup(obj) {
         ${obj.footer ? `<div id="popup-footer" class="popup-footer">
             <a id="popup-bottom" class="popup-footer-content" href="${obj.footer.url}">${obj.footer.text}</a>
         </div>` : ''}
-    ${!obj.embed ? `</div>`: ''}`;
+    ${!obj.embed ? `</div>` : ''}`;
 }
 
 export function multiPagePopup(obj) {

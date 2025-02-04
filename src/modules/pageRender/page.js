@@ -1,7 +1,6 @@
+import { backdropLink, checkbox, footerButtons, multiPagePopup, popup, settingsCategory, switcher } from "./elements.js";
 import { services, appName, authorInfo, version, quality, repo, donations, supportedAudio } from "../config.js";
 import { getCommitInfo } from "../sub/currentCommit.js";
-import { backdropLink, checkbox, footerButtons, multiPagePopup, popup, settingsCategory, switcher } from "./elements.js";
-
 import loc from "../../localization/manager.js";
 import emoji from "../emoji.js";
 

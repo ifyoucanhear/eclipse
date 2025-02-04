@@ -64,7 +64,7 @@ function changeDownloadButton(action, text) {
     }
 }
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
     if (event.key == "Tab") {
         eid("download-button").value = '>>'
         eid("download-button").style.padding = '0 1rem'
@@ -359,7 +359,7 @@ async function download(url) {
     }).catch((error) => internetError());
 }
 
-window.onload = function() {
+window.onload = () => {
     loadSettings();
     detectColorScheme();
 
@@ -385,7 +385,7 @@ eid("url-input-area").addEventListener("keyup", (event) => {
     }
 })
 
-document.onkeydown = function(event) {
+document.onkeydown = (event) => {
     if (event.key === 'Escape')
         hideAllPopups();
 };

@@ -8,7 +8,7 @@ import { Cyan, Bright, Green } from "./sub/consoleText.js";
 let envPath = './.env';
 let q = `${Cyan('?')} \x1b[1m`;
 let ob = { streamSalt: randomBytes(64).toString('hex') }
-let rl = createInterface({ input: process.stdin,output: process.stdout });
+let rl = createInterface({ input: process.stdin, output: process.stdout });
 
 console.log(
     `${Cyan("boas vindas ao eclipse!")}\n${Bright("nós vamos colocá-lo em funcionamento rapidamente.\ncomece criando um arquivo ")}${Cyan(".env")}${Bright(". você sempre pode alterá-lo mais tarde.")}`
@@ -56,7 +56,9 @@ let final = () => {
     console.log(Bright("\ncriei um arquivo .env com selfurl, porta e stream salt."))
     console.log(`${Bright("agora rode")} ${Cyan("npm install")} ${Bright("para instalar todas as dependências. isso não deve demorar muito.\n\n")}`)
     
-    execSync('npm install',{stdio:[0,1,2]});
+    execSync('npm install', {
+        stdio: [0, 1, 2]
+    });
     
     console.log(`\n\n${Green("tudo pronto!\n")}`)
     console.log("você pode executar novamente esse script a qualquer momento para atualizar a configuração.")

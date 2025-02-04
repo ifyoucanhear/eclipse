@@ -123,13 +123,13 @@ if (fs.existsSync('./.env')) {
         // redirecionar para uma página onde podem instalar um navegador apropriado
         if (req.header("user-agent") && req.header("user-agent").includes("Trident")) {
             if (internetExplorerRedirect.newNT.includes(req.header("user-agent").split('NT ')[1].split(';')[0])) {
-                res.redirect(internetExplorerRedirect.new)
+                res.redirect(internetExplorerRedirect.new);
 
-                return
+                return;
             } else {
-                res.redirect(internetExplorerRedirect.old)
+                res.redirect(internetExplorerRedirect.old);
 
-                return
+                return;
             }
         } else {
             res.send(renderPage({
@@ -146,7 +146,7 @@ if (fs.existsSync('./.env')) {
     });
 
     app.get("/*", async (req, res) => {
-        res.redirect('/')
+        res.redirect('/');
     });
 
     app.listen(process.env.port, () => {

@@ -69,7 +69,7 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 
 ### other
 
-- [ ] remake video quality picking (do it more like i did in vimeo module)
+- [ ] remake video quality picking
 - [ ] add support for emoji in localization
 - [ ] language picker in settings
 - [ ] make eclipse fully pwa compatible (add a service worker)
@@ -105,10 +105,7 @@ setup script installs all needed `npm` dependencies, but you have to install `no
 
 don't expect any consistency in that
 
-## third party stuff
-
-[fluent emoji](https://github.com/microsoft/fluentui-emoji) by microsoft.
-
 ## license
 
 eclipse is under [agpl-3.0 license](https://github.com/ifyoucanhear/eclipse/LICENSE)
+[fluent emoji](https://github.com/microsoft/fluentui-emoji) by microsoft is under [mit](https://github.com/microsoft/fluentui-emoji/blob/main/LICENSE).

@@ -4,7 +4,7 @@ import loc from "../../localization/manager.js";
 import { maxVideoDuration, quality as mq } from "../config.js";
 import selectQuality from "../stream/selectQuality.js";
 
-export default async function (obj) {
+export default async function(obj) {
     try {
         let info = await ytdl.getInfo(obj.id);
 
