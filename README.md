@@ -12,7 +12,8 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 
 - twitter
 - tiktok
-- youtube and youtube music
+- douyin
+- youtube + youtube music
 - bilibili.com
 - reddit
 - vk
