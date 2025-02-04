@@ -46,28 +46,28 @@ english and russian localization in [that directory](https://github.com/ifyoucan
 - you can rephrase sentences as long as they keep the same sense
 - you can add wordplays or puns if it feels natural to do so
 - even though i love cursing, keep that away from translations
+- always check if there are issues in UI with your localization
+- there's no need to translate `changelogcontenttitle` and `changelogcontent`, because those are very often changed
+- add "(in english)" to `changeloglastcommit` and `changeloglastmajor`, because those are almost always kept exclusively in english. remove that phrase if you do translate major update changelog
 - be nice
 
 ## todo
 
 ### services
 
-- [x] tumblr support
 - [ ] niconico support
 - [ ] instagram support
 - [ ] soundcloud support
 - [ ] add an option to save twitter gifs as `.gif` instead of `.mp4`
 - [ ] quality switching for bilibili
 - [ ] find a way to get tiktok videos without a watermark
-- [ ] add an option to keep watermark on TikTok videos
+- [ ] add an option to keep watermark on tiktok videos
 
 ### other
 
+- [ ] add support for emoji in localization
 - [ ] language picker in settings
-- [ ] make switch buttons in settings selectable with keyboard
-- [ ] option to save audios in formats other than original
 - [ ] make eclipse fully pwa compatible (add a service worker)
-- [ ] make page rendering module more versatile
 
 ## requirements
 
@@ -99,6 +99,10 @@ setup script installs all needed `npm` dependencies, but you have to install `no
 ## disclaimer
 
 don't expect any consistency in that
+
+## third party stuff
+
+[fluent emoji](https://github.com/microsoft/fluentui-emoji) by microsoft.
 
 ## license
 

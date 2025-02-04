@@ -15,4 +15,5 @@ export const
     supportedLanguages = config.supportedLanguages,
     quality = config.quality,
     internetExplorerRedirect = config.internetExplorerRedirect,
-    ffmpegArgs = config.ffmpegArgs
+    ffmpegArgs = config.ffmpegArgs,
+    supportedAudio = config.supportedAudio

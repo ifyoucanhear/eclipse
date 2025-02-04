@@ -1,13 +1,16 @@
 let isIOS = navigator.userAgent.toLowerCase().match("iphone os");
+let version = 3;
 
 let switchers = {
     "theme": ["auto", "light", "dark"],
-    "youtubeFormat": ["webm", "mp4", "audio"],
-    "quality": ["max", "hig", "mid", "low"]
+    "ytFormat": ["webm", "mp4"],
+    "quality": ["max", "hig", "mid", "low"],
+    "audioFormat": ["best", "mp3", "ogg", "opus"]
 }
 
 let exceptions = {
-    "youtubeFormat": "mp4"
+    "ytFormat": "mp4",
+    "audioFormat": "mp3"
 }
 
 function eid(id) {
@@ -24,6 +27,10 @@ function disable(id) {
 
 function vis(state) {
     return (state === 1) ? "visible" : "hidden";
+}
+
+function opposite(state) {
+    return state == "true" ? "false" : "true";
 }
 
 function changeDownloadButton(action, text) {
@@ -93,15 +100,55 @@ function detectColorScheme() {
     document.documentElement.setAttribute("data-theme", theme);
 }
 
+function changeTab(evnt, tabId, tabClass) {
+    let tabcontent = document.getElementsByClassName(`tab-content-${tabClass}`);
+    let tablinks = document.getElementsByClassName(`tab-${tabClass}`);
+
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].dataset.enabled = "false";
+    }
+
+    eid(tabId).style.display = "block";
+
+    evnt.currentTarget.dataset.enabled = "true";
+}
+
+function hideAllPopups() {
+    let filter = document.getElementsByClassName('popup');
+
+    for (let i = 0; i < filter.length; i++) {
+        filter[i].style.visibility = "hidden";
+    }
+
+    eid("popup-backdrop").style.visibility = "hidden";
+}
+
 function popup(type, action, text) {
     eid("popup-backdrop").style.visibility = vis(action);
 
     switch (type) {
         case "about":
+            let tabId = text ? text : "changelog";
+
+            if (tabId == "changelog") {
+                localStorage.setItem("changelogStatus", version)
+            }
+
+            eid(`tab-button-${type}-${tabId}`).click();
             eid("popup-about").style.visibility = vis(action);
 
             if (!localStorage.getItem("seenAbout"))
                 localStorage.setItem("seenAbout", "true");
+
+            break;
+
+        case "settings":
+            eid(`tab-button-${type}-video`).click();
+            eid("popup-settings").style.visibility = vis(action);
 
             break;
 
@@ -128,11 +175,10 @@ function popup(type, action, text) {
     }
 }
 
-function changeSwitcher(li, b, u) {
-    if (u)
+function changeSwitcher(li, b) {
+    if (b) {
         localStorage.setItem(li, b);
 
-    if (b) {
         for (i in switchers[li]) {
             (switchers[li][i] == b) ? enable(`${li}-${b}`) : disable(`${li}-${switchers[li][i]}`)
         }
@@ -142,10 +188,10 @@ function changeSwitcher(li, b, u) {
     } else {
         let pref = switchers[li][0];
 
+        localStorage.setItem(li, pref);
+
         if (isIOS && exceptions[li])
             pref = exceptions[li];
-
-        localStorage.setItem(li, pref);
 
         for (i in switchers[li]) {
             (switchers[li][i] == pref) ? enable(`${li}-${pref}`) : disable(`${li}-${switchers[li][i]}`)
@@ -186,9 +232,55 @@ function loadSettings() {
         eid("downloadPopup").checked = true;
     }
 
-    changeSwitcher("theme", localStorage.getItem("theme"))
-    changeSwitcher("youtubeFormat", localStorage.getItem("youtubeFormat"))
-    changeSwitcher("quality", localStorage.getItem("quality"))
+    if (!localStorage.getItem("audioMode")) {
+        toggle("audioMode");
+    }
+
+    updateToggle("audioMode", localStorage.getItem("audioMode"));
+
+    for (let i in switchers) {
+        changeSwitcher(i, localStorage.getItem(i));
+    }
+}
+
+function checkbox(action) {
+    if (eid(action).checked) {
+        localStorage.setItem(action, "true");
+
+        if (action == "alwaysVisibleButton")
+            button();
+    } else {
+        localStorage.setItem(action, "false");
+
+        if (action == "alwaysVisibleButton")
+            button();
+    }
+}
+
+function toggle(toggle) {
+    let state = localStorage.getItem(toggle);
+
+    if (state) {
+        localStorage.setItem(toggle, opposite(state));
+    } else {
+        localStorage.setItem(toggle, "false");
+    }
+
+    updateToggle(toggle, localStorage.getItem(toggle));
+}
+
+function updateToggle(toggle, state) {
+    switch(state) {
+        case "true":
+            eid(toggle).innerHTML = loc.toggleAudio;
+
+            break;
+
+        case "false":
+            eid(toggle).innerHTML = loc.toggleDefault;
+
+            break;
+    }
 }
 
 async function download(url) {
@@ -196,13 +288,11 @@ async function download(url) {
 
     eid("url-input-area").disabled = true;
 
-    let format = '';
-
-    if (url.includes("youtube.com/") || url.includes("/youtu.be/")) {
-        format = `&format=${localStorage.getItem("youtubeFormat")}`
-    }
-
-    fetch(`/api/json?quality=${localStorage.getItem("quality")}${format}&url=${encodeURIComponent(url)}`).then(async (response) => {
+    let audioMode = localStorage.getItem("audioMode");
+    let format = (url.includes("youtube.com/") && audioMode == "false" || url.includes("/youtu.be/") && audioMode == "false") ? `&format=${localStorage.getItem("ytFormat")}` : '';
+    let mode = (localStorage.getItem("audioMode") == "true") ? `audio=true` : `quality=${localStorage.getItem("quality")}`;
+    
+    fetch(`/api/json?audioFormat=${localStorage.getItem("audioFormat")}&${mode}${format}&url=${encodeURIComponent(url)}`).then(async (response) => {
         let j = await response.json();
 
         if (j.status != "error" && j.status != "rate-limit") {
@@ -279,8 +369,11 @@ window.onload = function() {
     eid("footer").style.visibility = 'visible';
     eid("url-input-area").value = "";
 
-    if (!localStorage.getItem("seenAbout"))
-        popup('about', 1);
+    if (!localStorage.getItem("seenAbout")) {
+        popup('about', 1, "about");
+    } else if (localStorage.getItem("changelogStatus") != `${version}` && localStorage.getItem("disableChangelog") != "true") {
+        popup('about', 1, "changelog");
+    }
 
     if (isIOS)
         localStorage.setItem("downloadPopup", "true");
@@ -291,3 +384,8 @@ eid("url-input-area").addEventListener("keyup", (event) => {
         eid("download-button").click();
     }
 })
+
+document.onkeydown = function(event) {
+    if (event.key === 'Escape')
+        hideAllPopups();
+};

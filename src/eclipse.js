@@ -11,8 +11,8 @@ import { getJSON } from "./modules/api.js";
 import { apiJSON, languageCode } from "./modules/sub/utils.js";
 import { Bright, Cyan } from "./modules/sub/consoleText.js";
 import { buildFront } from "./modules/build.js";
-import loc, { loadLoc } from "./localization/manager.js";
-import renderPage from "./modules/pageRender.js";
+import loc from "./localization/manager.js";
+import renderPage from "./modules/pageRender/page.js";
 import stream from "./modules/stream/stream.js";
 
 const commitHash = shortCommit();
@@ -71,8 +71,10 @@ if (fs.existsSync('./.env')) {
                             
                             languageCode(req),
 
-                            req.query.format ? req.query.format.slice(0, 5) : "mp4",
-                            req.query.quality ? req.query.quality.slice(0, 3) : "max"
+                            req.query.format ? req.query.format.slice(0, 5) : "webm",
+                            req.query.quality ? req.query.quality.slice(0, 3) : "max",
+                            req.query.audioFormat ? req.query.audioFormat.slice(0, 4) : false,
+                            req.query.audio ? true : false
                         )
 
                         res.status(j.status).json(j.body);
@@ -92,7 +94,7 @@ if (fs.existsSync('./.env')) {
                     } else if (req.query.t) {
                         let ip = req.header('x-forwarded-for') ? req.header('x-forwarded-for') : req.ip
                         
-                        stream(res, ip, req.query.t, req.query.h, req.query.e);
+                        stream(res, ip, req.query.t, req.query.h, req.query.e, languageCode(req));
                     } else {
                         let j = apiJSON(0, { t: loc(languageCode(req), 'ErrorNoStreamID') })
                         

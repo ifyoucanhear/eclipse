@@ -52,8 +52,7 @@ export default async function (obj) {
                     if (!obj.isAudioOnly && videoMatch.length > 0) {
                         if (video.length > 0 && audio.length > 0) {
                             if (videoMatch[0]["hasVideo"] && videoMatch[0]["hasAudio"]) {
-                                return { type: "bridge", urls: videoMatch[0]["url"], time: videoMatch[0]["approxDurationMs"],
-                                filename: `youtube_${obj.id}_${videoMatch[0]["width"]}x${videoMatch[0]["height"]}.${obj.format}` };
+                                return { type: "bridge", isAudioOnly: true, urls: audio[0]["url"], audioFilename: `youtube_${obj.id}_audio` };
                             } else {
                                 return { type: "bridge", isAudioOnly: true, urls: audio[0]["url"], filename: `youtube_${obj.id}_${audio[0]["audioBitrate"]}kbps.${audio[0]["container"] == "webm" ? "opus" : "m4a"}` };
                             }
