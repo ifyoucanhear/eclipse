@@ -1,7 +1,7 @@
 import got from "got";
 
 import loc from "../../localization/manager";
-import { genericUserAgent, mobileUserAgent } from "../config";
+import { genericUserAgent } from "../config";
 
 export default async function(obj) {
     try {
@@ -28,7 +28,7 @@ export default async function(obj) {
         let iteminfo = await got.get(`https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids=${obj.postId}`, {
             headers: {
                 'authority': 'www.iesdouyin.com',
-                'user-agent': mobileUserAgent,
+                'user-agent': genericUserAgent,
                 'content-type': 'application/x-www-form-urlencoded',
                 'accept': '*/*',
                 'referer': `https://www.iesdouyin.com/share/video/${obj.postId}/?region=CN&u_code=15b9142gf&titleType=title&utm_source=copy_link&utm_campaign=client_share&utm_medium=android&app=aweme`,
