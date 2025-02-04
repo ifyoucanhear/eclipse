@@ -21,7 +21,6 @@ eclipse doesn't remux any videos, so videos you get are max quality available (u
 ## todo
 
 - [ ] niconico support
-- [ ] douyin support
 - [ ] instagram support
 - [ ] quality switching for bilibli and twitter
 - [ ] language picker in settings
