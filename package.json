@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/ifyoucanhear/eclipse.git"
   },
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "homepage": "https://github.com/ifyoucanhear/eclipse#readme",
   "dependencies": {
     "cors": "^2.8.5",
